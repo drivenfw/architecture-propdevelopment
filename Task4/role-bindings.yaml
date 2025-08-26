@@ -1,0 +1,41 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: configure-cluster-access
+  namespace: home-namespace
+subjects:
+- kind: ServiceAccount
+  name: devops-engineer
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: configure-cluster
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: monitor-cluster-access
+  namespace: home-namespace
+subjects:
+- kind: ServiceAccount
+  name: infrastructure-operator
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: monitor-cluster
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-secrets-access
+  namespace: secure-home-namespace
+subjects:
+- kind: ServiceAccount
+  name: security-operator
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: read-secrets
+  apiGroup: rbac.authorization.k8s.io
